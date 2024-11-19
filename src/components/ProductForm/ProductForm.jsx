@@ -5,7 +5,7 @@ import {useEffect, useState } from 'react'
 import {useNavigate, useParams } from 'react-router-dom'
 
 //!--- Services
-import {show, create, update } from '../../services/productService'
+import {show, create, update, deleteProduct } from '../../services/productService'
 
 
 const ProductForm = () => {
@@ -56,6 +56,15 @@ const ProductForm = () => {
     }
   }
 
+  const handleDeleteProduct = async () => {
+    try {
+        await deleteProduct(productId)
+        navigate('/products')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
   return (
     <div className='somethingnew'>
       <form onSubmit={ handleSubmit }>
@@ -79,6 +88,7 @@ const ProductForm = () => {
           onChange={handleChange}
         />
         <button type="submit"> Submit </button>
+        <button onClick={handleDeleteProduct}>Delete</button>
       </form>
     </div>
   );
