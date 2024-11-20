@@ -17,6 +17,8 @@ import ProductShow from './pages/ProductShow/ProductShow';
 import ProductCreate from './pages/ProductCreate/ProductCreate';
 import ProductUpdate from './pages/ProductUpdate/ProductUpdate';
 
+import NotFound from './pages/NotFound/NotFound';
+
 import { getUser, removeToken } from './utils/auth'
 
 const App = () => {
@@ -48,6 +50,7 @@ const App = () => {
             <Route path="/signup" element={<SignUp setUser={setUser} />} />
           </>
         )}
+         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
