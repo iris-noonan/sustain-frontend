@@ -67,6 +67,8 @@ const ProductsShow = () => {
       </ul>
       <h2>Product Details</h2>
       <p>{product.name}</p><br />
+      <p>{product.photo}</p><br />
+      <img src={product.photo} width="550" />
       <p>{product.description}</p><br />
       <ul>
         {product.seasonality.map((season) => (

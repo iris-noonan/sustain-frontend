@@ -10,6 +10,8 @@ import { getBadges } from '../../services/badgeService'
 import { getSeasonality } from '../../services/seasonalityService'
 import { getCategories } from '../../services/categoriesService'
 
+//!-- Components
+import ImageUploadField from '../ImageUploadField/ImageUploadField'
 
 const ProductForm = () => {
 
@@ -17,11 +19,14 @@ const ProductForm = () => {
   const [badges, setBadges] = useState([])
   const [categories, setCategories] = useState([])
 
+  const [uploading, setUploading] = useState(false)
+
   //Form Data State
 
   const[formData, setFormData] = useState ({
     name: '',
     description: '',
+    photo: '',
     seasonality: [],
     badges: [],
     categories: []
@@ -147,7 +152,7 @@ const ProductForm = () => {
           value={formData.name}
           onChange={handleChange}
         />
-
+        <ImageUploadField setFormdata={setFormData} formData={formData} fieldName="photo" setUploading={setUploading} />
         <label htmlFor="description">Description:</label>
         <input
           required
@@ -178,7 +183,7 @@ const ProductForm = () => {
           </>
         ))}
 
-        <button type="submit"> Submit </button>
+        <button type="submit" value="Submit" disabled={uploading} />
         <button onClick={handleDeleteProduct}>Delete</button>
       </form>
     </div>
