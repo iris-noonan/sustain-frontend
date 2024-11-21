@@ -1,0 +1,44 @@
+.productFormShow{
+  display: flex;
+  flex-direction: column;
+}
+
+.productFormHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.productFormTitle{
+  display: flex;
+  flex-direction: column;
+}
+
+.productFormName{
+  display: flex;
+  margin: 0;
+}
+
+.productFormCategory{
+  display: flex;
+  margin: 0;
+}
+
+.productFormBadges{
+  display: flex;
+  align-items: center;
+}
+
+.productFormDetails{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.productFormPhoto{
+  display: flex;
+}
+
+.productFormDescription{
+  display: flex;
+  flex: 1;
+}

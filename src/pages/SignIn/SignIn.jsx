@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signin } from '../../services/authService'
 
+import styles from './SignIn.module.scss';
+
 import Errors from '../../components/Errors/Errors'
 
 const SignIn = ({ setUser }) => {
@@ -40,7 +42,7 @@ const SignIn = ({ setUser }) => {
       <section>
       <h1>Log in</h1>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="input-group">
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -50,7 +52,7 @@ const SignIn = ({ setUser }) => {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="input-group">
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -61,11 +63,11 @@ const SignIn = ({ setUser }) => {
             />
           </div>
           <Errors message={errors} />
-          <div>
-            <button>Sign In</button>
+          <div className={styles.buttons}>
             <Link to="/">
               <button>Cancel</button>
             </Link>
+            <button>Sign In</button>
           </div>
         </form>
       </section>

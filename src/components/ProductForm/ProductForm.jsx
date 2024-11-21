@@ -13,6 +13,8 @@ import { getCategories } from '../../services/categoriesService'
 //!-- Components
 import ImageUploadField from '../ImageUploadField/ImageUploadField'
 
+import styles from './ProductForm.module.scss';
+
 const ProductForm = () => {
 
   const [seasonality, setSeasonality] = useState([])
@@ -25,11 +27,11 @@ const ProductForm = () => {
 
   const[formData, setFormData] = useState ({
     name: '',
-    description: '',
-    photo: '',
-    seasonality: [],
+    categories: [],
     badges: [],
-    categories: []
+    photo: '',
+    description: '',
+    seasonality: [],
   })
 
   //Errors State - for storing erros to use in error handling
@@ -141,52 +143,46 @@ const ProductForm = () => {
   if (!badges) return <p>Loading...</p>
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="name">Name:</label>
-        <input
-          required 
-          type="text" 
-          name="name"
-          id="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <ImageUploadField setFormdata={setFormData} formData={formData} fieldName="photo" setUploading={setUploading} />
-        <label htmlFor="description">Description:</label>
-        <input
-          required
-          type="text"
-          name="description"
-          id="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-        <label htmlFor="categories">Choose a category:</label>
-        <select name="categories" value={formData.categories[0] && formData.categories[0].id} onChange={handleCategoryChange}>
-          {categories.map((category) => (
-            <option key={category.name} value={category.id}>{category.name}</option>
+    <form className={styles.productForm} onSubmit={ handleSubmit }>
+      <div className={styles.productFormHeader}>
+        <div className={styles.productTitle}>
+          <div className="input-group">
+            <label htmlFor="name">Name:</label>
+            <input required  type="text"  name="name" id="name" value={formData.name} onChange={handleChange} />
+          </div>
+          <div className="input-group">
+            <label htmlFor="categories">Category:</label>
+            <select name="categories" value={formData.categories[0] && formData.categories[0].id} onChange={handleCategoryChange}>
+              {categories.map((category) => (
+                <option key={category.name} value={category.id}>{category.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className={styles.productBadges}>
+          {badges.map((badge, key) => (
+            <div className="input-group">
+              <input value={badge.id} key={badge.name + key} type="checkbox" checked={formData.badges.includes(badge.id)} onChange={handleBadgeChange} />
+              <label htmlFor={badge.name}>{badge.name}</label>
+            </div>
           ))}
-        </select>
-        <label htmlFor="categories">Choose badges:</label>
-        {badges.map((badge, key) => (
-          <>
-            <input value={badge.id} key={badge.name + key} type="checkbox" checked={formData.badges.includes(badge.id)} onChange={handleBadgeChange} />
-            <label htmlFor={badge.name}>{badge.name}</label>
-          </>
-        ))}
-        <label htmlFor="seasonality">Choose Seasons:</label>
-        {seasonality.map((season, key) => (
-          <>
-            <input value={season.id} key={season.name + key} type="checkbox" checked={formData.seasonality.includes(season.id)} onChange={handleSeasonalityChange} />
-            <label htmlFor={season.name}>{season.name}</label>
-          </>
-        ))}
+        </div>
+      </div>
+      <label htmlFor="description">Photo:</label>
+      <ImageUploadField setFormdata={setFormData} formData={formData} fieldName="photo" setUploading={setUploading} />
+      <label htmlFor="description">Description:</label>
+      <input required type="text" name="description" id="description" value={formData.description} onChange={handleChange} />
+      <label htmlFor="seasonality">Choose Seasons:</label>
+      {seasonality.map((season, key) => (
+        <>
+          <input value={season.id} key={season.name + key} type="checkbox" checked={formData.seasonality.includes(season.id)} onChange={handleSeasonalityChange} />
+          <label htmlFor={season.month}>{season.month}</label>
+        </>
+      ))}
 
-        <button type="submit" value="Submit" disabled={uploading} />
-        <button onClick={handleDeleteProduct}>Delete</button>
-      </form>
-    </div>
+      <button type="submit" value="Submit" disabled={uploading} />
+      <button onClick={handleDeleteProduct}>Delete</button>
+    </form>
   );
 }
 

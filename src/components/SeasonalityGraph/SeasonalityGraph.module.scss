@@ -1,0 +1,25 @@
+.bars {
+  display: flex;
+}
+
+.barArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bar {
+  height: 30px;
+  width: 20px;
+  margin: 10px;
+}
+
+.positive {
+  background: #9ecd32;
+}
+
+.neutral {
+  height: 2px;
+  background: #646cff;
+}

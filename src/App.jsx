@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
+import styles from './App.module.scss';
+
 //!--- Components
 import NavBar from './components/NavBar/NavBar';
 
@@ -35,23 +37,25 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleSignOut={handleSignOut}/>
-      <Routes>
-        { user ? (
-          <>
-            <Route path="/" element={<Products user={user} />} />
-            <Route path="/products/:productId" element={<ProductShow user={user} />} />
-            <Route path="/products/new" element={<ProductCreate />} />
-            <Route path="/products/:productId/edit" element={<ProductUpdate />} />
-          </>
-        ) : (
-          <>
-            <Route path="/" element={<Landing />} />
-            <Route path="/signin" element={<SignIn setUser={setUser} />} />
-            <Route path="/signup" element={<SignUp setUser={setUser} />} />
-          </>
-        )}
-         <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className={styles.contents}>
+        <Routes>
+          { user ? (
+            <>
+              <Route path="/" element={<Products user={user} />} />
+              <Route path="/products/:productId" element={<ProductShow user={user} />} />
+              <Route path="/products/new" element={<ProductCreate />} />
+              <Route path="/products/:productId/edit" element={<ProductUpdate />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Landing />} />
+              <Route path="/signin" element={<SignIn setUser={setUser} />} />
+              <Route path="/signup" element={<SignUp setUser={setUser} />} />
+            </>
+          )}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
     </>
   );
 };

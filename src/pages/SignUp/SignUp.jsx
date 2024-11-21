@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signup } from '../../services/authService'
 
+import styles from './SignUp.module.scss';
+
 const SignUp = ({ setUser }) => {
 
   // ! State
@@ -36,7 +38,7 @@ const SignUp = ({ setUser }) => {
     <main>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="input-group">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -46,7 +48,7 @@ const SignUp = ({ setUser }) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -56,7 +58,7 @@ const SignUp = ({ setUser }) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="confirm">Confirm Password:</label>
           <input
             type="password"
@@ -66,7 +68,7 @@ const SignUp = ({ setUser }) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className={styles.buttons}>
           <button>Sign Up</button>
           <Link to="/">
             <button>Cancel</button>

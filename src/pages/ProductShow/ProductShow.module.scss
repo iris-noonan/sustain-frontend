@@ -1,0 +1,43 @@
+.productShow{
+  display: flex;
+  flex-direction: column;
+}
+
+.productHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.productTitle{
+  display: flex;
+  flex-direction: column;
+}
+
+.productName{
+  display: flex;
+  margin: 0;
+}
+
+.productCategory{
+  display: flex;
+  margin: 0;
+}
+
+.productBadges{
+  display: flex;
+  align-items: center;
+}
+
+.productDetails{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.productPhoto{
+  display: flex;
+}
+
+.productDescription{
+  display: flex;
+  flex: 1;
+}

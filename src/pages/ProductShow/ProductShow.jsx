@@ -9,10 +9,17 @@ import { getBadges } from "../../services/badgeService"
 import { getSeasonality } from "../../services/seasonalityService"
 import { getCategories } from "../../services/categoriesService"
 
+// Components
+import SeasonalityGraph from '../../components/SeasonalityGraph/SeasonalityGraph'
+import Badge from '../../components/Badge/Badge'
+
+import styles from './ProductShow.module.scss';
+
 const ProductsShow = () => {
 
   const [product, setProduct] = useState(null)
   const [seasonality, setSeasonality] = useState([])
+  const [seasonalityArray, setSeasonalityArray] = useState([])
   const [badges, setBadges] = useState([])
   const [categories, setCategories] = useState([])
 
@@ -28,6 +35,8 @@ const ProductsShow = () => {
       const { data: seasonality } = await getSeasonality()
       const { data: badges } = await getBadges()
       const { data: categories } = await getCategories()
+      const seasons = products.seasonality.map(season => season.id)
+      setSeasonalityArray(seasons)
       setProduct(products)
       setBadges(badges)
       setCategories(categories)
@@ -50,62 +59,23 @@ const ProductsShow = () => {
   if (!product) return <p>Loading...</p>
 
   return (
-    <main>
-      <h1>Product Name</h1>
-      <h2>Badges</h2>
-      <ul>
-        {badges.map((badge) => (
-          <li>
-            <div>
-              <div>
-                <span>Name: </span>
-                <span>{badge.name}</span>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <h2>Product Details</h2>
-      <p>{product.name}</p><br />
-      <p>{product.photo}</p><br />
-      <img src={product.photo} width="550" />
-      <p>{product.description}</p><br />
-      <ul>
-        {product.seasonality.map((season) => (
-          <li>
-            <div>
-              <div>
-                <span>Name: </span>
-                <span>{season.month}</span>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {product.badges.map((badge) => (
-          <li>
-            <div>
-              <div>
-                <span>Name: </span>
-                <span>{badge.name}</span>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {product.categories.map((category) => (
-          <li>
-            <div>
-              <div>
-                <span>Name: </span>
-                <span>{category.name}</span>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <main className={styles.productShow}>
+      <div className={styles.productHeader}>
+        <div className={styles.productTitle}>
+          <h1 className={styles.productName}>{product.name}</h1>
+          <h4 className={styles.productCategory}>{product.categories[0]?.name}</h4>
+        </div>
+        <div className={styles.productBadges}>
+          {badges.map((badge) => (
+            <Badge badge={badge.name} />
+          ))}
+        </div>
+      </div>
+      <div className={styles.productDetails}>
+        <img className={styles.productPhoto} src={product.photo} width="440px" alt={`Photo of a ${product.name}`} />
+        <p className={styles.productDescription}>{product.description}</p>
+        <SeasonalityGraph seasonality={seasonality} seasons={seasonalityArray} />
+      </div>
     </main>
   );
 };
