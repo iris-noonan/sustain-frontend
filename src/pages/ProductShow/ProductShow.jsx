@@ -1,7 +1,7 @@
 // src/pages/ProductsShow/ProductsShow.jsx
 
 import { useState, useEffect, useCallback } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, NavLink } from "react-router-dom"
 
 // Services
 import { show } from "../../services/productService"
@@ -70,7 +70,7 @@ const ProductsShow = ({ user }) => {
         <p className={styles.productDescription}>{product.description}</p>
         {product.seasonality.length > 0 && <SeasonalityGraph seasonality={seasonality} seasons={seasonalityArray} />}
       </div>
-      { user.admin && <a href={`${product.id}/edit`} className="button" role="button">Edit</a>}
+      { user.admin && <NavLink to={`/products/${product.id}/edit`} className="button" role="button">Edit</NavLink>}
     </main>
   );
 };
