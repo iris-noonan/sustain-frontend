@@ -40,7 +40,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 18px;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -53,6 +53,12 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (min-width: 576px) {
+  button {
+    font-size: 24px;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -105,6 +111,24 @@ input {
   padding: 4px 8px;
 }
 
+input,
+select,
+textarea {
+  flex: 1;
+  font-size: 18pt;
+  border: solid black 4px;
+  margin: 0 0 24px;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
+input[type="file"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+}
+
 button,
 .button {
   background: #6132CD;
@@ -114,11 +138,17 @@ button,
   padding: 0.5rem 1.0rem 0.5rem;
   margin: 0 0 0 18px;
   border-radius: 0.5rem;
-  font-size: 18pt;
+  font-size: 18px;
   font-weight: 1000;
 
   &:hover {
     background: #9ECD32;
     color: #fff;
+  }
+}
+
+@media (min-width: 576px) {
+  .button {
+    font-size: 24px;
   }
 }

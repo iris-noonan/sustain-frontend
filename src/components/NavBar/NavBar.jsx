@@ -6,18 +6,19 @@ const NavBar = ({ user, handleSignOut }) => {
   return (
     <div className={styles.header}>
       <NavLink to="/">
-        <img src={logo} width="290" />
+        <img className={styles.logo} src={logo} width="290" />
       </NavLink>
       <nav className={styles.nav}>
         <ul className={styles.navList}>
-          { user ? (
+          { user &&
             <>
-              <li><NavLink to="/">Products</NavLink></li>
-              <li><NavLink to="" onClick={handleSignOut}>Sign Out</NavLink></li>
+              <li className={styles.navListItem}><NavLink to="/">Products</NavLink></li>
+              { user.admin &&
+                <li className={styles.navListItem}><NavLink to="/products/new">New Product</NavLink></li>
+              }
+              <li className={styles.logout}><NavLink to="" onClick={handleSignOut}>Sign Out</NavLink></li>
             </>
-          ) : (
-            <li><NavLink to="/">Products</NavLink></li>
-          )}
+          }
         </ul>
       </nav>
     </div>

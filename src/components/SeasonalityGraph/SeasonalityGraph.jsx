@@ -8,7 +8,7 @@ const SeasonalityGraph = ({ seasonality, seasons }) => {
       </h3>
       <div className={styles.bars}>
         {seasonality.map((season) => (
-          <div className={styles.barArea}>
+          <div key={season.month} className={styles.barArea}>
             <div className={`${styles.bar} ${seasons.includes(season.month) ? styles.positive : styles.neutral}`} />
             <div>
               {season.month}

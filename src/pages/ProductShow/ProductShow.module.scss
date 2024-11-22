@@ -35,9 +35,13 @@
 
 .productPhoto{
   display: flex;
+  height: fit-content;
+  width: 100%;
+  max-width: 400px;
 }
 
 .productDescription{
   display: flex;
+  margin-left: 18px;
   flex: 1;
 }

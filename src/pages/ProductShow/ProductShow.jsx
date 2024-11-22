@@ -15,7 +15,7 @@ import Badge from '../../components/Badge/Badge'
 
 import styles from './ProductShow.module.scss';
 
-const ProductsShow = () => {
+const ProductsShow = ({ user }) => {
 
   const [product, setProduct] = useState(null)
   const [seasonality, setSeasonality] = useState([])
@@ -49,12 +49,6 @@ const ProductsShow = () => {
   useEffect(() => {
       fetchProduct()
   }, [productId, fetchProduct])
-
-
-  console.log(badges)
-  console.log(product)
-  console.log(seasonality)
-  console.log(categories)
   
   if (!product) return <p>Loading...</p>
 
@@ -66,16 +60,17 @@ const ProductsShow = () => {
           <h4 className={styles.productCategory}>{product.categories[0]?.name}</h4>
         </div>
         <div className={styles.productBadges}>
-          {badges.map((badge) => (
-            <Badge badge={badge.name} />
+          {product.badges.map((badge) => (
+            <Badge key={`badge-${badge.id}`} id={badge.id} badges={badges} />
           ))}
         </div>
       </div>
       <div className={styles.productDetails}>
         <img className={styles.productPhoto} src={product.photo} width="440px" alt={`Photo of a ${product.name}`} />
         <p className={styles.productDescription}>{product.description}</p>
-        <SeasonalityGraph seasonality={seasonality} seasons={seasonalityArray} />
+        {product.seasonality.length > 0 && <SeasonalityGraph seasonality={seasonality} seasons={seasonalityArray} />}
       </div>
+      { user.admin && <a href={`${product.id}/edit`} className="button" role="button">Edit</a>}
     </main>
   );
 };

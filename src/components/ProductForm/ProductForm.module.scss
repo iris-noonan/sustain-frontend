@@ -5,6 +5,7 @@
 
 .productFormHeader{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
@@ -27,6 +28,7 @@
 .productFormBadges{
   display: flex;
   align-items: center;
+  font-size: 16px;
 }
 
 .productFormDetails{
@@ -41,4 +43,27 @@
 .productFormDescription{
   display: flex;
   flex: 1;
+}
+
+.productFormSeasonality {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.productFormSeasonalityItem {
+  display: flex;
+  flex-direction: column;
+  min-width: 36px;
+  text-align: center;
+}
+
+.productFormSeasonalityCheckbox {
+  margin-bottom: 8px;
+}
+
+.productFormButtons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }

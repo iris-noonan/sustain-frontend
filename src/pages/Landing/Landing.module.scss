@@ -1,9 +1,22 @@
 .landingPageButtons {
   display: flex;
   justify-content: center;
+  padding-right: 18px;
 }
 
 .landingCopy {
-  padding: 24px 38px;
+  padding: 12px;
   margin-bottom: 24px;
+}
+
+@media (min-width: 576px) {
+  .landingCopy {
+    padding: 24px 38px;
+  }
+}
+
+@media (min-width: 768px) {
+  .landingCopy {
+    padding: 24px 38px;
+  }
 }
