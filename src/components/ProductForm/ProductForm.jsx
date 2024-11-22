@@ -122,12 +122,10 @@ const ProductForm = () => {
     const categories = []
     const value = Number(event.target.value)
     categories.push(value)
-    debugger
     setFormData({...formData, ['categories']: categories})
   }
 
   const handleSubmit = async (event) => {
-    debugger
     event.preventDefault()
     try {
       let res
